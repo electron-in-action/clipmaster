@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A clipboard manager built in Electron.",
   "main": "app/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
   "repository": "git@github.com:stevekinney/clipmaster.git",
   "author": "Steve Kinney <hello@stevekinney.net> (http://stevekinney.net)",
   "license": "MPLv2",
