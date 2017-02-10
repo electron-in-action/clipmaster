@@ -1,5 +1,5 @@
 const path = require('path');
-const { app, Menu, Tray } = require('electron');
+const { app, clipboard, Menu, Tray } = require('electron');
 
 const clippings = [];
 let tray = null;
@@ -18,7 +18,7 @@ const updateMenu = () => {
   const menu = Menu.buildFromTemplate([
     {
       label: 'Create New Clipping',
-      click() { null; }
+      click() { addClipping(); }
     },
     { type: 'separator' },
     ...clippings.map((clipping, index) => ({ label: clipping })),
@@ -30,4 +30,10 @@ const updateMenu = () => {
   ]);
 
   tray.setContextMenu(menu);
+};
+
+const addClipping = () => {
+  const clipping = clipboard.readText();
+  clippings.push(clipping);
+  updateMenu();
 };
