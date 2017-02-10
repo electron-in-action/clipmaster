@@ -33,6 +33,7 @@ const updateMenu = () => {
 };
 
 const addClipping = () => {
+  if (clippings.includes(clipping)) return;
   const clipping = clipboard.readText();
   clippings.push(clipping);
   updateMenu();
