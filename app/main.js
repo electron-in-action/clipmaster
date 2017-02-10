@@ -1,3 +1,4 @@
+const path = require('path');
 const { app, Menu, Tray } = require('electron');
 
 let tray = null;
@@ -5,7 +6,7 @@ let tray = null;
 app.on('ready', () => {
   if (app.dock) app.dock.hide();
 
-  tray = new Tray(__dirname + '/Icon.png');
+  tray = new Tray(path.join(__dirname, '/Icon.png'));
 
   const menu = Menu.buildFromTemplate([
     {
