@@ -15,7 +15,7 @@ app.on('ready', () => {
 
   if (!activationShortcut) console.error('Global activation shortcut failed to regiester');
 
-  const newClippingShortcut = globalShortcut.register('CommandOrControl+Shift+C', () => {
+  const newClippingShortcut = globalShortcut.register('CommandOrControl+Shift+Option+C', () => {
     addClipping();
   });
 
