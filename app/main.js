@@ -18,14 +18,16 @@ const updateMenu = () => {
   const menu = Menu.buildFromTemplate([
     {
       label: 'Create New Clipping',
-      click() { addClipping(); }
+      click() { addClipping(); },
+      accelerator: 'CommandOrControl+Shift+C'
     },
     { type: 'separator' },
     ...clippings.slice(0, 10).map(createClippingMenuItem),
     { type: 'separator' },
     {
       label: 'Quit',
-      click() { app.quit(); }
+      click() { app.quit(); },
+      accelerator: 'CommandOrControl+Q'
     }
   ]);
 
