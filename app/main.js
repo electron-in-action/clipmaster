@@ -19,7 +19,7 @@ app.on('ready', () => {
     addClipping();
   });
 
-  if (!newClippingShortcut) console.error('Global activation shortcut failed to regiester');
+  if (!newClippingShortcut) console.error('Global new clipping shortcut failed to regiester');
 
   updateMenu();
 
