@@ -1,5 +1,5 @@
 const path = require('path');
-const { app, clipboard, Menu, Tray } = require('electron');
+const { app, clipboard, globalShortcut, Menu, Tray } = require('electron');
 
 const clippings = [];
 let tray = null;
@@ -8,6 +8,18 @@ app.on('ready', () => {
   if (app.dock) app.dock.hide();
 
   tray = new Tray(path.join(__dirname, '/Icon.png'));
+
+  const activationShortcut = globalShortcut.register('CommandOrControl+Option+C', () => {
+    tray.popUpContextMenu();
+  });
+
+  if (!activationShortcut) console.error('Global activation shortcut failed to regiester');
+
+  const newClippingShortcut = globalShortcut.register('CommandOrControl+Shift+C', () => {
+    addClipping();
+  });
+
+  if (!newClippingShortcut) console.error('Global activation shortcut failed to regiester');
 
   updateMenu();
 
@@ -35,8 +47,8 @@ const updateMenu = () => {
 };
 
 const addClipping = () => {
-  if (clippings.includes(clipping)) return;
   const clipping = clipboard.readText();
+  if (clippings.includes(clipping)) return;
   clippings.unshift(clipping);
   updateMenu();
 };
