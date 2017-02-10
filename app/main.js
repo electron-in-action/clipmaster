@@ -40,7 +40,7 @@ const addClipping = () => {
 
 const createClippingMenuItem = (clipping, index) => {
   return {
-    label: clipping,
+    label: clipping.length > 20 ? clipping.slice(0, 20) + '…' : clipping,
     click() { clipboard.writeText(clipping); },
     accelerator: `CommandOrControl+${index}`
   };
