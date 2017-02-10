@@ -21,7 +21,7 @@ const updateMenu = () => {
       click() { addClipping(); }
     },
     { type: 'separator' },
-    ...clippings.map((clipping, index) => ({ label: clipping })),
+    ...clippings.map(createClippingMenuItem),
     { type: 'separator' },
     {
       label: 'Quit',
@@ -36,4 +36,12 @@ const addClipping = () => {
   const clipping = clipboard.readText();
   clippings.push(clipping);
   updateMenu();
+};
+
+const createClippingMenuItem = (clipping, index) => {
+  return {
+    label: clipping,
+    click() { clipboard.writeText(clipping); },
+    accelerator: `CommandOrControl+${index}`
+  };
 };
