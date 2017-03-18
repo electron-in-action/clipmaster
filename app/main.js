@@ -5,17 +5,20 @@ const clippings = [];
 let tray = null;
 let browserWindow = null;
 
+const getIcon = () => {
+  if (process.platform === 'win32') return 'icon-light.ico';
+  return 'icon-dark.png';
+};
+
 app.on('ready', () => {
   if (app.dock) app.dock.hide();
 
-  // Conditionally check the platform to get the right icon here.
-  tray = new Tray(path.join(__dirname, '/Icon.png'));
+  tray = new Tray(path.join(__dirname, getIcon()));
+  tray.setPressedImage(path.join(__dirname, 'icon-light.png'));
 
   if (process.platform === 'win32') {
     tray.on('click', tray.popUpContextMenu);
   }
-
-  console.log(tray);
 
   browserWindow = new BrowserWindow({
     show: false
