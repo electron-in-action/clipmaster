@@ -8,7 +8,14 @@ let browserWindow = null;
 app.on('ready', () => {
   if (app.dock) app.dock.hide();
 
+  // Conditionally check the platform to get the right icon here.
   tray = new Tray(path.join(__dirname, '/Icon.png'));
+
+  if (process.platform === 'win32') {
+    tray.on('click', tray.popUpContextMenu);
+  }
+
+  console.log(tray);
 
   browserWindow = new BrowserWindow({
     show: false
