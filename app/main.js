@@ -34,7 +34,9 @@ app.on('ready', () => {
 
   const newClippingShortcut = globalShortcut.register('CommandOrControl+Shift+Option+C', () => {
     const clipping = addClipping();
-    browserWindow.webContents.send('show-notification', 'Clipping Added', clipping);
+    if (clipping) {
+      browserWindow.webContents.send('show-notification', 'Clipping Added', clipping);
+    }
   });
 
   if (!newClippingShortcut) console.error('Global new clipping shortcut failed to regiester');
