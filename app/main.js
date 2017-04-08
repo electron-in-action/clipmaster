@@ -1,5 +1,13 @@
 const path = require('path');
-const { app, BrowserWindow, clipboard, globalShortcut, Menu, Tray } = require('electron');
+const {
+  app,
+  BrowserWindow,
+  clipboard,
+  globalShortcut,
+  Menu,
+  Tray,
+  systemPreferences
+} = require('electron');
 
 const clippings = [];
 let tray = null;
@@ -7,6 +15,7 @@ let browserWindow = null;
 
 const getIcon = () => {
   if (process.platform === 'win32') return 'icon-light.ico';
+  if (systemPreferences.isDarkMode()) return 'icon-light.png';
   return 'icon-dark.png';
 };
 
