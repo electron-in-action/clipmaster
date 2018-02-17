@@ -14,7 +14,7 @@ let tray = null;
 let browserWindow = null;
 
 const getIcon = () => {
-  if (process.platform === 'win32') return 'icon-light.ico';
+  if (process.platform === 'win32') return 'icon-light@2x.ico';
   if (systemPreferences.isDarkMode()) return 'icon-light.png';
   return 'icon-dark.png';
 };
